@@ -10,6 +10,12 @@ Requires Python >= 3.7
 
 watchfiles==0.18.0
 
+
+### Demo
+
+https://user-images.githubusercontent.com/63696279/199995369-1a57bdb4-77b6-4cf0-8f0b-07e0ede3100e.mp4
+
+
 ### Usage
 
 ```
