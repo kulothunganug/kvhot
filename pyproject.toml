@@ -1,0 +1,52 @@
+
+[build-system]
+requires      = ['setuptools>=61.0.0', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'kvhot'
+version = 'v2022.11.5'
+description = 'Hotrestarts kivy application whenever project files changes.'
+readme = 'README.md'
+authors = [{ name = 'Kulothungan', email = 'kulothunganug@gmail.com' }]
+license = { file = 'LICENSE' }
+keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
+dependencies = [
+    'watchfiles==0.18.0',
+]
+requires-python = '>=3.7, <=3.10'
+classifiers = [
+    'Environment :: Console',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: MacOS',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Software Development :: User Interfaces',
+]
+
+[project.optional-dependencies]
+dev = ['black', 'isort', 'flake8', 'pip-tools']
+
+[project.urls]
+Homepage = 'https://github.com/Kulothungan16/kvhot'
+
+[project.scripts]
+kvhot = 'kvhot.__main__:main'
+
+[tool.black]
+line-length = 80
+target-version = ['py37', 'py38', 'py39', 'py310']
+
+[tool.isort]
+line_length = 80
+known_third_party = ['watchfiles']

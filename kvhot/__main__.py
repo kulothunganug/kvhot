@@ -1,4 +1,5 @@
 import argparse
+import importlib.metadata
 import os
 import subprocess
 import sys
@@ -6,6 +7,11 @@ from typing import Union
 
 from watchfiles import watch
 from watchfiles.main import FileChange
+
+try:
+    __version__ = importlib.metadata.version("kvhot")
+except importlib.metadata.PackageNotFoundError:
+    __version__ = "unknown"
 
 
 def log(s: str):
@@ -59,6 +65,9 @@ parser.add_argument(
 )
 parser.add_argument(
     "--left", type=int, default=0, help="Left position of the window."
+)
+parser.add_argument(
+    "-V", "--version", action="version", version="%(prog)s " + __version__
 )
 
 
@@ -121,7 +130,6 @@ def main():
     args = vars(parser.parse_args())
     w = Watcher(**args)
     w.start()
-
 
 
 if __name__ == "__main__":
