@@ -41,7 +41,7 @@ def check_target_dir(path: str) -> str:
 
 parser = argparse.ArgumentParser(
     prog="kvhot",
-    description="Hotrestarts kivy application when project (target_dir) files changes.",
+    description="Hotrestarts kivy application whenever project (target_dir) files changes.",
 )
 parser.add_argument(
     "target_dir",
