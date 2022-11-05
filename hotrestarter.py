@@ -117,7 +117,12 @@ class Watcher:
             log("Stopping")
 
 
-if __name__ == "__main__":
+def main():
     args = vars(parser.parse_args())
     w = Watcher(**args)
     w.start()
+
+
+
+if __name__ == "__main__":
+    main()
