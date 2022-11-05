@@ -1,4 +1,4 @@
-# Kivy-hotrestarter
+# kvhot
 
 Hotrestarts kivy application whenever project files changes.
 
@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/63696279/199995369-1a57bdb4-77b6-4cf0-
 ### Usage
 
 ```
-usage: Kivy hotrestarter [-h] [--width WIDTH] [--height HEIGHT] [--top TOP]
+usage: kvhot [-h] [--width WIDTH] [--height HEIGHT] [--top TOP]
                          [--left LEFT]
                          target_dir
 

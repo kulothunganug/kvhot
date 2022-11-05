@@ -16,9 +16,9 @@ def log(s: str):
     BOLD = "\033[01m"
     RESET = "\033[0m"
     msg = (
-        f"[{BLUE}{BOLD}HOTRESTARTER{RESET}]: {s}"
+        f"[{BLUE}{BOLD}KVHOT{RESET}]: {s}"
         if sys.platform != "win32"
-        else f"[HOTRESTARTER]: {s}"
+        else f"[KVHOT]: {s}"
     )
     print(msg)
 
@@ -40,7 +40,7 @@ def check_target_dir(path: str) -> str:
 
 
 parser = argparse.ArgumentParser(
-    prog="Kivy hotrestarter",
+    prog="kvhot",
     description="Hotrestarts kivy application when project (target_dir) files changes.",
 )
 parser.add_argument(
