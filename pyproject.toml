@@ -14,7 +14,7 @@ keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
 dependencies = [
     'watchfiles==0.18.0',
 ]
-requires-python = '>=3.7, <=3.10'
+requires-python = '>=3.7'
 classifiers = [
     'Environment :: Console',
     'Programming Language :: Python',
@@ -24,6 +24,7 @@ classifiers = [
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
     'Intended Audience :: Developers',
     'Intended Audience :: Information Technology',
     'License :: OSI Approved :: MIT License',
@@ -45,7 +46,7 @@ kvhot = 'kvhot.__main__:main'
 
 [tool.black]
 line-length = 80
-target-version = ['py37', 'py38', 'py39', 'py310']
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 
 [tool.isort]
 line_length = 80
