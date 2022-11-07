@@ -97,6 +97,7 @@ class Watcher:
 
         if not changes:
             log("Starting app...")
+            log(f"Running {self.main_py}")
             log("Press CTRL+C to stop.")
         else:
             change_type = changes[0].raw_str().title()
