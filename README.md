@@ -10,7 +10,7 @@ No need to type `python main.py` each time, making a small change in the code ðŸ
 
 ### Demo
 
-https://user-images.githubusercontent.com/63696279/199995369-1a57bdb4-77b6-4cf0-8f0b-07e0ede3100e.mp4
+https://user-images.githubusercontent.com/63696279/200531463-4ca1bbec-11e0-49ef-ad5f-b9fcc23760ba.mp4
 
 ### Usage
 
@@ -31,4 +31,4 @@ optional arguments:
   -V, --version    show program's version number and exit
 ```
 
-(Works on windows, linux and osx)
+*(Works on windows, linux and osx)*
