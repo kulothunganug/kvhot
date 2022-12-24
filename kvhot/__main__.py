@@ -75,8 +75,12 @@ parser.add_argument(
 
 
 def filter_blacklist_paths(
-    target_dir: str, blacklisted_paths: list[str]
+    blacklisted_paths: Union[list[str], None]
 ) -> list[str]:
+
+    if not blacklisted_paths:
+        return []
+
     paths: list[str] = []
 
     for path in blacklisted_paths:
@@ -105,12 +109,12 @@ class Watcher:
         height: int,
         top: int,
         left: int,
-        blacklist: list[str],
+        blacklist: Union[list[str], None],
     ):
         self.target_dir = target_dir
         self.main_py = os.path.join(self.target_dir, "main.py")
         self.blacklist_filter = DefaultFilter(
-            ignore_paths=filter_blacklist_paths(target_dir, blacklist)
+            ignore_paths=filter_blacklist_paths(blacklist)
         )
 
         os.environ["KCFG_GRAPHICS_WIDTH"] = str(width)
