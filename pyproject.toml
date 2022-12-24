@@ -12,8 +12,8 @@ authors = [{ name = 'Kulothungan', email = 'kulothunganug@gmail.com' }]
 license = { file = 'LICENSE' }
 keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
 dependencies = [
-    'watchfiles==0.18.0',
-    'importlib_metadata==5.0.0',
+    'watchfiles>=0.18.1',
+    'importlib_metadata>=5.2.0',
 ]
 requires-python = '>=3.7'
 classifiers = [
