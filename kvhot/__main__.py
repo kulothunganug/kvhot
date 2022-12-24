@@ -5,7 +5,7 @@ import sys
 from typing import Union
 
 import importlib_metadata
-from watchfiles import watch
+from watchfiles import DefaultFilter, watch
 from watchfiles.main import FileChange
 
 try:
@@ -67,8 +67,25 @@ parser.add_argument(
     "--left", type=int, default=0, help="Left position of the window."
 )
 parser.add_argument(
+    "-b", "--blacklist", nargs="+", help="Ignore certain files."
+)
+parser.add_argument(
     "-V", "--version", action="version", version="%(prog)s " + __version__
 )
+
+
+def filter_blacklist_paths(
+    target_dir: str, blacklisted_paths: list[str]
+) -> list[str]:
+    paths: list[str] = []
+
+    for path in blacklisted_paths:
+        abs_path: str = os.path.abspath(path)
+
+        if os.path.exists(abs_path):
+            paths.append(abs_path)
+
+    return paths
 
 
 class Watcher:
@@ -79,13 +96,22 @@ class Watcher:
     _process: "subprocess.Popen[bytes]"
     target_dir: str
     main_py: str
+    blacklist_filter: DefaultFilter
 
     def __init__(
-        self, target_dir: str, width: int, height: int, top: int, left: int
+        self,
+        target_dir: str,
+        width: int,
+        height: int,
+        top: int,
+        left: int,
+        blacklist: list[str],
     ):
-        super(Watcher, self).__init__()
         self.target_dir = target_dir
         self.main_py = os.path.join(self.target_dir, "main.py")
+        self.blacklist_filter = DefaultFilter(
+            ignore_paths=filter_blacklist_paths(target_dir, blacklist)
+        )
 
         os.environ["KCFG_GRAPHICS_WIDTH"] = str(width)
         os.environ["KCFG_GRAPHICS_HEIGHT"] = str(height)
@@ -120,7 +146,9 @@ class Watcher:
         self._start_app()
 
         try:
-            for changes in watch(self.target_dir):
+            for changes in watch(
+                self.target_dir, watch_filter=self.blacklist_filter
+            ):
                 self._start_app(changes.pop())
         except KeyboardInterrupt:
             self._stop_app()
