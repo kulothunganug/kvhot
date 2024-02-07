@@ -14,21 +14,6 @@ except importlib.metadata.PackageNotFoundError:
     __version__ = "unknown"
 
 
-def log(s: str):
-    """
-    Simple log system.
-    """
-    BLUE = "\033[34m"
-    BOLD = "\033[01m"
-    RESET = "\033[0m"
-    msg = (
-        f"[{BLUE}{BOLD}KVHOT{RESET}]: {s}"
-        if sys.platform != "win32"
-        else f"[KVHOT]: {s}"
-    )
-    print(msg)
-
-
 def check_target_dir(path: str) -> str:
     """
     Checks if the target_dir is exists and there is main.py inside it.
@@ -53,29 +38,44 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "target_dir",
     type=check_target_dir,
-    help="Directory of the entry-point (main.py) of the kivy application",
+    help="directory of the entry-point (main.py) of the kivy application",
 )
 parser.add_argument(
-    "--width", type=int, default=350, help="Width of the window."
+    "--width", type=int, default=350, help="width of the window."
 )
 parser.add_argument(
-    "--height", type=int, default=650, help="Height of the window."
+    "--height", type=int, default=650, help="height of the window."
 )
 parser.add_argument(
-    "--top", type=int, default=0, help="Top position of the window."
+    "--top", type=int, default=0, help="top position of the window."
 )
 parser.add_argument(
-    "--left", type=int, default=0, help="Left position of the window."
+    "--left", type=int, default=0, help="left position of the window."
 )
 parser.add_argument(
     "-b",
     "--blacklist",
     nargs="+",
-    help="Exclude specific files/dirs from being monitored.",
+    help="exclude specific files/dirs from being monitored.",
 )
 parser.add_argument(
     "-V", "--version", action="version", version="%(prog)s " + __version__
 )
+
+
+def log(s: str):
+    """
+    Simple log system.
+    """
+    BLUE = "\033[34m"
+    BOLD = "\033[01m"
+    RESET = "\033[0m"
+    msg = (
+        f"[{BLUE}{BOLD}KVHOT{RESET}]: {s}"
+        if sys.platform != "win32"
+        else f"[KVHOT]: {s}"
+    )
+    print(msg)
 
 
 def filter_blacklist_paths(
