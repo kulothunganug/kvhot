@@ -1,16 +1,16 @@
 import argparse
+import importlib.metadata
 import os
 import subprocess
 import sys
 from typing import Union
 
-import importlib_metadata
 from watchfiles import DefaultFilter, watch
 from watchfiles.main import FileChange
 
 try:
-    __version__ = importlib_metadata.version("kvhot")
-except importlib_metadata.PackageNotFoundError:
+    __version__ = importlib.metadata.version("kvhot")
+except importlib.metadata.PackageNotFoundError:
     __version__ = "unknown"
 
 

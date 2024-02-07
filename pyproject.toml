@@ -13,7 +13,6 @@ license = { file = 'LICENSE' }
 keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
 dependencies = [
     'watchfiles>=0.18.1',
-    'importlib_metadata>=5.2.0',
 ]
 requires-python = '>=3.8'
 classifiers = [
@@ -52,4 +51,4 @@ target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
 
 [tool.isort]
 line_length = 80
-known_third_party = ['watchfiles', 'importlib_metadata']
+known_third_party = ['watchfiles']
