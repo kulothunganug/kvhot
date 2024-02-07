@@ -67,7 +67,10 @@ parser.add_argument(
     "--left", type=int, default=0, help="Left position of the window."
 )
 parser.add_argument(
-    "-b", "--blacklist", nargs="+", help="Ignore certain files."
+    "-b",
+    "--blacklist",
+    nargs="+",
+    help="Exclude specific files/dirs from being monitored.",
 )
 parser.add_argument(
     "-V", "--version", action="version", version="%(prog)s " + __version__
