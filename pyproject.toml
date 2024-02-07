@@ -8,7 +8,7 @@ name = 'kvhot'
 version = 'v2022.12.25'
 description = 'Hotrestarts kivy application whenever project files changes.'
 readme = 'README.md'
-authors = [{ name = 'Kulothungan', email = 'kulothunganug@gmail.com' }]
+authors = [{ name = 'Kulothungan U.G', email = 'kulothunganug@gmail.com' }]
 license = { file = 'LICENSE' }
 keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
 dependencies = [
@@ -40,7 +40,8 @@ classifiers = [
 dev = ['black', 'isort', 'flake8', 'pip-tools']
 
 [project.urls]
-Homepage = 'https://github.com/Kulothungan16/kvhot'
+Homepage = 'https://github.com/kulothunganug/kvhot'
+Issues = 'https://github.com/kulothunganug/issues'
 
 [project.scripts]
 kvhot = 'kvhot.__main__:main'
