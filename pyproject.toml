@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'kvhot'
-version = 'v2022.12.25'
+version = 'v2024.02.07'
 description = 'Automatically restarts the Kivy application whenever files within the project directory change.'
 readme = 'README.md'
 authors = [{ name = 'Kulothungan U.G', email = 'kulothunganug@gmail.com' }]
