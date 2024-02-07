@@ -1,6 +1,6 @@
 # kvhot
 
-Hotrestarts kivy application whenever project files changes.
+Automatically restarts the Kivy application whenever files within the project directory change.
 
 No need to type `python main.py` each time, making a small change in the code 😄.
 
