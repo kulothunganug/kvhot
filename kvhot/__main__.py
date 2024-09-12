@@ -1,6 +1,7 @@
 import argparse
 import importlib.metadata
 import os
+import shlex
 import subprocess
 import sys
 from typing import Union
@@ -30,37 +31,40 @@ def check_target_dir(path: str) -> str:
     return path
 
 
-parser = argparse.ArgumentParser(
-    prog="kvhot",
-    description="Automatically restarts the Kivy application "
-    "whenever files within the project directory change.",
-)
-parser.add_argument(
-    "target_dir",
-    type=check_target_dir,
-    help="directory of the entry-point (main.py) of the kivy application",
-)
-parser.add_argument(
-    "--width", type=int, default=350, help="width of the window."
-)
-parser.add_argument(
-    "--height", type=int, default=650, help="height of the window."
-)
-parser.add_argument(
-    "--top", type=int, default=0, help="top position of the window."
-)
-parser.add_argument(
-    "--left", type=int, default=0, help="left position of the window."
-)
-parser.add_argument(
-    "-b",
-    "--blacklist",
-    nargs="+",
-    help="exclude specific files/dirs from being monitored.",
-)
-parser.add_argument(
-    "-V", "--version", action="version", version="%(prog)s " + __version__
-)
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog="kvhot",
+        description="Automatically restarts the Kivy application "
+        "whenever files within the project directory change.",
+    )
+    parser.add_argument(
+        "target_dir",
+        type=check_target_dir,
+        help="directory of the entry-point (main.py) of the kivy application",
+    )
+    parser.add_argument("--width", type=int, default=350, help="width of the window.")
+    parser.add_argument("--height", type=int, default=650, help="height of the window.")
+    parser.add_argument("--top", type=int, default=0, help="top position of the window.")
+    parser.add_argument("--left", type=int, default=0, help="left position of the window.")
+    parser.add_argument(
+        "-b",
+        "--blacklist",
+        nargs="+",
+        help="exclude specific files/dirs from being monitored.",
+    )
+    parser.add_argument("-V", "--version", action="version", version="%(prog)s " + __version__)
+
+    # Arbitrary arguments to pass through to the kivy application
+    parser.add_argument(
+        "--app-args",
+        help="arguments to pass to the kivy application as a single quoted string, this will be split and passed on to the kivy application",
+    )
+    args = parser.parse_args()
+    if args.app_args:
+        args.app_args = shlex.split(args.app_args)
+    else:
+        args.app_args = []
+    return args
 
 
 def log(s: str):
@@ -114,12 +118,14 @@ class Watcher:
         top: int,
         left: int,
         blacklist: Union[list[str], None],
+        app_args: list,
     ):
         self.target_dir = target_dir
         self.main_py = os.path.join(self.target_dir, "main.py")
         self.blacklist_filter = DefaultFilter(
             ignore_paths=filter_blacklist_paths(blacklist)
         )
+        self.app_args = app_args
 
         os.environ["KCFG_GRAPHICS_WIDTH"] = str(width)
         os.environ["KCFG_GRAPHICS_HEIGHT"] = str(height)
@@ -140,7 +146,8 @@ class Watcher:
             log(f"{change_type} {file_path}, restarting app...")
             self._process.kill()
 
-        self._process = subprocess.Popen([sys.executable, self.main_py])
+        command = [sys.executable, self.main_py] + self.app_args
+        self._process = subprocess.Popen(command)
 
     def _stop_app(self):
         if self._process:
@@ -164,7 +171,8 @@ class Watcher:
 
 
 def main():
-    args = vars(parser.parse_args())
+    args = parse_args()
+    args = vars(args)
     w = Watcher(**args)
     w.start()
 
