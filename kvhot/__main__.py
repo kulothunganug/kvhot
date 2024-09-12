@@ -39,7 +39,7 @@ def parse_args():
     )
     parser.add_argument(
         "target_dir",
-        # type=check_target_dir,
+        type=check_target_dir,
         help="directory of the entry-point (main.py) of the kivy application",
     )
     parser.add_argument("--width", type=int, default=350, help="width of the window.")
