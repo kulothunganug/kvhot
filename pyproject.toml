@@ -5,10 +5,10 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'kvhot'
-version = 'v2024.02.07'
+version = 'v2024.09.12'
 description = 'Automatically restarts the Kivy application whenever files within the project directory change.'
 readme = 'README.md'
-authors = [{ name = 'Kulothungan U.G', email = 'kulothunganug@gmail.com' }]
+authors = [{ name = 'Kulothungan U.G', email = 'kulothunganug@gmail.com' }, { name = 'Alexander Hellier', email = 'alex.hellier@gmail.com' }]
 license = { file = 'LICENSE' }
 keywords = ['kivy', 'kivymd', 'hotrestart', 'gui']
 dependencies = [
