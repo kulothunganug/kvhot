@@ -31,6 +31,7 @@ options:
   -b BLACKLIST [BLACKLIST ...], --blacklist BLACKLIST [BLACKLIST ...]
                         exclude specific files/dirs from being monitored.
   -V, --version         show program's version number and exit
+  --app-args    arguments to pass to the kivy application as a single quoted string, this will be split and passed on to the kivy application, example --app-args "arg1 arg2 --my-kwarg=value"
 ```
 
 *(Works on windows, linux and osx)*
